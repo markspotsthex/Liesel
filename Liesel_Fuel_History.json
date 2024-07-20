@@ -1,0 +1,82 @@
+{
+"stations":[
+ {"stationName":"Deerfield Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"2 Waukegan Rd, Deerfield, IL 60015","uid":"5744416306"}}
+,{"stationName":"BP 8937807","attributes":{"price_dim":"$/gal","brand":"BP","address":"Unknown","uid":"8937807"}}
+,{"stationName":"BP 8886525","attributes":{"price_dim":"$/gal","brand":"BP","address":"Unknown","uid":"8886525"}}
+,{"stationName":"3700 W Addison Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"3700 W Addison St, Chicago, IL 60618","uid":"12547993001"}}
+,{"stationName":"BP 5210 Northwest Hwy","attributes":{"price_dim":"$/gal","brand":"BP","address":"5210 Northwest Highway, Chicago, IL 60630","uid":"Unknown"}}
+,{"stationName":"4000 W IP Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"4000 W Irving PArk Rd, Chicago, IL 60641", "uid":"57444176200"}}
+,{"stationName":"Riverwoods Mobil","attributes":{"price_dim":"$/gal","brand":"Mobil","address":"2201 Deerfield Rd, Riverwoods, IL 60015","uid":"FG17128369001"}}
+,{"stationName":"BP 1041900","attributes":{"price_dim":"$/gal","brand":"BP","address":"3201 W Addison St, Chicago, IL 60618","uid":"1041900"}}
+,{"stationName":"Diamond IL Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"3195 E Division St, Diamond, IL 60416","uid":"10047577100"}}
+,{"stationName":"BP 9109927","attributes":{"price_dim":"$/gal","brand":"BP","address":"Unknown","uid":"9109927"}}
+,{"stationName":"Palatine Mobil","attributes":{"price_dim":"$/gal","brand":"Mobil","address":"7 N Northwest Highway, Palatine, IL 60067","uid":"7-Eleven #38977"}}
+,{"stationName":"4401 N Cicero Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"4401 N Cicero Ave, Chicago, IL 60630","uid":"57444166201"}}
+],
+"stops":[
+ {"datetime":"2019-07-17 07:46","stationName":"Deerfield Shell","gal":7.040,"price":3.279,"credit":23.08,"trip":210.9,"miles":215}
+,{"datetime":"2019-08-13 08:04","stationName":"Deerfield Shell","gal":9.252,"price":2.849,"credit":26.36,"trip":227.7,"miles":443}
+,{"datetime":"2019-09-19 08:14","stationName":"Deerfield Shell","gal":6.239,"price":3.059,"credit":19.09,"trip":159.7,"miles":603}
+,{"stationName":"BP 8937807","datetime":"2019-11-11 09:09","gal":7.458,"price":2.999,"credit":22.37,"trip":182.5,"miles":954}
+,{"stationName":"BP 8886525","datetime":"2019-12-19 16:52","gal":7.378,"price":2.999,"credit":22.13,"miles":1153,"trip":198.6}
+,{"stationName":"3700 W Addison Shell","datetime":"2020-02-09 15:31","gal":5.369,"price":2.899,"credit":15.56,"miles":1424,"trip":127.8}
+,{"stationName":"BP 5210 Northwest Hwy","datetime":"2019-10-13 14:52","gal":6.908,"credit":23.48,"price":3.399,"miles":772,"trip":168.8}
+,{"stationName":"3700 W Addison Shell","datetime":"2020-01-11 16:25","gal":5.793,"price":2.849,"credit":16.50,"miles":1296,"trip":143.4}
+,{"stationName":"Not Specified","datetime":"2020-02-22 12:00","gal":6.034,"price":2.659,"credit":16.04,"miles":1579,"trip":154.9,"errors":{"trip":"reset","stationName":"Unknown","form":"no receipt"}}
+,{"stationName":"Deerfield Shell","datetime":"2020-03-06 07:41","gal":5.816,"price":2.679,"credit":15.58,"miles":1750,"trip":170.1}
+,{"stationName":"3700 W Addison Shell","datetime":"2020-03-13 11:39","gal":4.449,"price":2.799,"credit":12.45,"miles":1891,"trip":140.3}
+,{"stationName":"4000 W IP Shell","datetime":"2020-05-02 12:42","gal":2.976,"price":2.539,"credit":7.56,"miles":1937,"trip":46.5}
+,{"stationName":"3700 W Addison Shell","datetime":"2020-07-01 08:46","gal":7.095,"price":2.559,"credit":18.16,"miles":2131,"trip":193.2}
+,{"stationName":"3700 W Addison Shell","datetime":"2020-08-16 15:41","gal":5.757,"price":2.559,"credit":14.73,"miles":2239,"trip":108.6}
+,{"stationName":"3700 W Addison Shell","datetime":"2020-10-03 12:15","gal":5.317,"price":2.519,"credit":13.39,"miles":2343,"trip":103.4}
+,{"stationName":"3700 W Addison Shell","datetime":"2020-11-15 14:57","gal":5.6206,"price":2.459,"credit":13.82,"miles":2450,"trip":107.6}
+,{"stationName":"Riverwoods Mobil","datetime":"2021-09-22 16:29","gal":7.306,"price":3.459,"credit":25.27,"miles":3422,"trip":242.2}
+,{"stationName":"3700 W Addison Shell","datetime":"2020-12-24 15:52","gal":7.972,"price":2.489,"credit":17.60,"miles":2630,"trip":179.5}
+,{"stationName":"3700 W Addison Shell","datetime":"2021-05-15 12:30","gal":6.029,"price":3.499,"credit":21.10,"miles":2856,"trip":144.3}
+,{"stationName":"3700 W Addison Shell","datetime":"2021-04-15 09:11","gal":4.463,"price":3.279,"credit":14.63,"miles":2712,"trip":81.6}
+,{"stationName":"BP 1041900","datetime":"2021-06-24 15:07","gal":5.455,"price":3.699,"credit":20.18,"miles":2972,"trip":115.2}
+,{"stationName":"Diamond IL Shell","datetime":"2021-09-16 12:55","gal":4.387,"price":3.399,"credit":14.91,"miles":3180,"trip":106.4}
+,{"stationName":"BP 1041900","datetime":"2021-12-01 15:57","gal":6.802,"price":3.899,"credit":23.40,"miles":3560,"trip":137.1}
+,{"stationName":"3700 W Addison Shell","datetime":"2021-08-26 12:09","gal":5.023,"price":3.659,"credit":18.38,"miles":3068,"trip":96.4,"errors":{"trip":"reset"}}
+,{"stationName":"3700 W Addison Shell","datetime":"2022-03-19 13:05","gal":5.210,"price":4.819,"credit":25.11,"miles":3683,"trip":123.5}
+,{"stationName":"Deerfield Shell","datetime":"2022-05-12 07:43","gal":4.596,"price":4.869,"credit":22.38,"miles":4099,"trip":126.3}
+,{"stationName":"Deerfield Shell","datetime":"2022-04-13 07:22","gal":5.613,"price":4.549,"credit":25.53,"miles":3807,"trip":123.6}
+,{"stationName":"Deerfield Shell","datetime":"2022-05-09 07:45","gal":6.150,"price":4.799,"credit":29.51,"miles":3972,"trip":165.5}
+,{"stationName":"Riverwoods Mobil","datetime":"2022-07-05 17:45","gal":6.418,"price":5.799,"credit":37.22,"miles":4624,"trip":207.1}
+,{"stationName":"Deerfield Shell","datetime":"2022-06-01 07:50","gal":4.863,"price":5.359,"credit":26.06,"miles":4220,"trip":120.4}
+,{"stationName":"Deerfield Shell","datetime":"2022-06-14 07:43","gal":8.040,"price":5.849,"credit":47.03,"miles":4416,"trip":196.8}
+,{"stationName":"Riverwoods Mobil","datetime":"2022-07-18 19:36","gal":3.579,"price":5.399,"credit":19.32,"miles":4735,"trip":109.7}
+,{"stationName":"Deerfield Shell","datetime":"2022-08-30 07:45","gal":6.661,"price":4.539,"credit":30.23,"miles":4928,"trip":192.9}
+,{"stationName":"BP 9109927","datetime":"2022-09-13 17:31","gal":5.425,"price":4.399,"credit":23.86,"miles":5076,"trip":147.6}
+,{"stationName":"Riverwoods Mobil","datetime":"2022-09-29 07:57","gal":8.098,"price":4.399,"credit":35.62,"miles":5298,"trip":222.1}
+,{"stationName":"Riverwoods Mobil","datetime":"2022-10-11 16:56","gal":6.440,"price":4.599,"credit":29.62,"miles":5511,"trip":212.8}
+,{"stationName":"Deerfield Shell","datetime":"2022-11-02 07:48","gal":4.253,"price":4.459,"credit":18.96,"miles":5595,"trip":83.6}
+,{"stationName":"Palatine Mobil","datetime":"2022-12-01 08:19","gal":6.344,"price":3.579,"credit":22.71,"miles":5761,"trip":166.0}
+,{"stationName":"Riverwoods Mobil","datetime":"2024-05-07 07:55","gal":7.847,"price":4.199,"credit":32.95,"miles":10057,"trip":201.7}
+,{"stationName":"4401 N Cicero Shell","datetime":"2023-01-31 07:51","gal":4.800,"price":4.359,"credit":20.92,"miles":6131,"trip":98.3}
+,{"stationName":"Deerfield Shell","datetime":"2022-12-15 07:55","gal":5.663,"price":3.879,"credit":21.97,"miles":5900,"trip":139.5}
+,{"stationName":"Deerfield Shell","datetime":"2023-01-10 07:54","gal":5.300,"price":3.459,"credit":18.33,"miles":6033,"trip":132.6}
+,{"stationName":"Deerfield Shell","datetime":"2023-02-24 07:45","gal":7.401,"price":3.599,"credit":26.64,"miles":6318,"trip":186.8}
+,{"stationName":"Deerfield Shell","datetime":"2023-03-20 07:55","gal":7.991,"price":3.699,"credit":29.56,"miles":6537,"trip":219.1}
+,{"stationName":"Deerfield Shell","datetime":"2023-05-08 07:55","gal":5.285,"price":4.259,"credit":22.51,"miles":7079,"trip":158.3}
+,{"stationName":"Deerfield Shell","datetime":"2023-05-16 07:48","gal":5.980,"price":4.259,"credit":25.47,"miles":7260,"trip":181.0}
+,{"stationName":"Deerfield Shell","datetime":"2023-06-13 07:55","gal":6.006,"price":4.199,"credit":25.22,"miles":7544,"trip":142.6}
+,{"stationName":"Deerfield Shell","datetime":"2023-06-22 07:36","gal":5.321,"price":4.399,"credit":23.41,"miles":7713,"trip":169.6}
+,{"stationName":"Deerfield Shell","datetime":"2023-07-25 07:43","gal":4.705,"price":4.079,"credit":19.19,"miles":7842,"trip":128.6}
+,{"stationName":"Deerfield Shell","datetime":"2023-09-05 07:54","gal":6.308,"price":4.279,"credit":26.99,"miles":8026,"trip":183.4,"errors":{"trip":"reset"}}
+,{"stationName":"Deerfield Shell","datetime":"2023-09-19 07:47","gal":5.578,"price":4.199,"credit":23.42,"miles":8173,"trip":144.0}
+,{"stationName":"Deerfield Shell","datetime":"2023-09-25 07:35","gal":4.748,"price":4.149,"credit":19.70,"miles":8311,"trip":138.4}
+,{"stationName":"Deerfield Shell","datetime":"2023-10-12 08:26","gal":6.821,"price":3.799,"credit":25.91,"miles":8520,"trip":208.7,"errors":{"trip":"reset"}}
+,{"stationName":"Deerfield Shell","datetime":"2023-12-12 07:54","gal":6.404,"price":3.499,"credit":22.41,"miles":9059,"trip":138.9}
+,{"stationName":"Deerfield Shell","datetime":"2024-01-18 07:57","gal":6.975,"price":3.399,"credit":23.71,"miles":9211,"trip":151.5}
+,{"stationName":"Deerfield Shell","datetime":"2024-02-26 08:05","gal":7.378,"price":3.599,"credit":26.55,"miles":9364,"trip":152.7}
+,{"stationName":"Deerfield Shell","datetime":"2024-03-12 07:58","gal":5.037,"price":3.779,"credit":19.03,"miles":9507,"trip":143.1}
+,{"stationName":"Deerfield Shell","datetime":"2024-03-27 07:46","gal":7.350,"price":3.999,"credit":29.39,"miles":9696,"trip":189.5}
+,{"stationName":"Deerfield Shell","datetime":"2024-04-17 07:58","gal":5.711,"price":4.159,"credit":23.75,"miles":9856,"trip":159.2}
+,{"stationName":"Riverwoods Mobil","datetime":"2023-03-29 07:51","gal":5.574,"price":3.899,"credit":21.73,"miles":6692,"trip":154.3}
+,{"stationName":"Riverwoods Mobil","datetime":"2023-11-16 17:17","gal":6.991,"price":3.699,"credit":25.86,"miles":8921,"trip":179.9}
+,{"stationName":"Riverwoods Mobil","datetime":"2023-11-02 17:28","gal":7.528,"price":3.799,"credit":28.60,"miles":8741,"trip":201.1}
+,{"stationName":"Riverwoods Mobil","datetime":"2023-05-01 08:03","gal":5.106,"price":4.199,"credit":21.44,"miles":7401,"trip":141.3}
+,{"stationName":"Riverwoods Mobil","datetime":"2023-04-25 08:00","gal":8.518,"price":4.299,"credit":35.62,"miles":6920,"trip":228.6}
+]
+}
