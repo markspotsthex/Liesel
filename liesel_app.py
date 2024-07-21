@@ -17,7 +17,6 @@ import piecewise_regression as pwr
 
 # ---- Settings ----
 page_title = "Data Analytics with Real World Data: Gas Receipts"
-page_icon = ":automobile:"
 layout = "centered"
 # ------------------
 
@@ -50,7 +49,8 @@ df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
 # -----------------------
 
-st.set_page_config(page_title=page_title,page_icon=page_icon,layout=layout)
-st.title = (page_title + " " + page_icon)
-
-st.text('I\'m not sure this works.')
+st.set_page_config(page_title=page_title,layout=layout)
+st.title="Data Analytics on Real World Data: Gas Receipts"
+st.header("Background")
+st.write("I bought my car, a 2019 Volkswagen Golf, in June 2019. It was purchased to be a second car for our household. I didn't use it that often to commute to my job, maybe once or twice a week.  Then the pandemic struck. I had been using it infrequently before; at that point, I wasn't using it at all.")
+st.write("When I was younger, I had a co-worker that kept a log of every time he put gas in his truck. He logged the mileage, the gas consumption, dates, everything. At the time, it seemed weird. But once I got the chance to start fresh with a new car, the whole process sounded pretty interesting.")
