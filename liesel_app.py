@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 import plotly.graph_objects as go
 
+import urllib.request
 import json
 from datetime import datetime, date, timedelta
 
@@ -36,9 +37,8 @@ data=pd.DataFrame(data)
 
 # ---- internal data ----
 fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
-f=open(fpath)
-fh = json.load(f)
-f.close
+with urllib.request.urlopen(fpath) as url:
+    fh = json.load(url)
 
 df_stations = pd.DataFrame(fh['stations'])
 
