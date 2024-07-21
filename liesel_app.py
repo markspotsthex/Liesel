@@ -16,7 +16,7 @@ from sklearn.linear_model import LinearRegression
 import piecewise_regression as pwr
 
 # ---- Settings ----
-page_title = "Analyzing my car's first 10,000 miles"
+page_title = "Data Analytics with Real World Data: Gas Receipts"
 page_icon = ":automobile:"
 layout = "centered"
 # ------------------
@@ -53,3 +53,4 @@ df_stops['ttrip']=df_stops['trip'].cumsum()
 st.set_page_config(page_title=page_title,page_icon=page_icon,layout=layout)
 st.title = (page_title + " " + page_icon)
 
+st.text('I\'m not sure this works.')
