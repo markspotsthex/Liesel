@@ -27,7 +27,7 @@ rto = datetime(2023,4,17)
 # -------------------
 
 # ---- external data ----
-fred= Fred(api_key=FRED_API_KEY)
+fred= Fred(api_key=st.secrets["FRED_API_KEY"])
 data={}
 data['gas']=fred.get_series('GASREGW',observation_start=liesel_buy)
 data=pd.DataFrame(data)
