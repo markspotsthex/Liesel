@@ -65,5 +65,11 @@ st.markdown("""
             
             Originally, we planned to lease the Golf, so I jokingly referred to it as _Liesel_. We ended up buying it, but at that point I was enamored with the name, so it stuck.
 
-            _Liesel_ was purchased to be a second car for our household. I didn't need to use it that often to commute to my job, maybe once or twice a week. We have offices out in the suburbs and downtown Chicago, both not far from the train that runs near my house. Then the pandemic struck. I had been using it infrequently before; at that point, I wasn't using it at all.
+            _Liesel_ was purchased to be a second car for our household. I didn't need to use it that often to commute to my job, maybe once or twice a week. We have offices out in the suburbs and downtown Chicago, both not far from the train that runs near my house. Then the pandemic struck. I had been using it infrequently before; at that point, I wasn't using it at all. It took a long time for things to get back to anything resembling normalcy.
             """)            
+st.subheader("Full Circle")
+st.markdown("""
+            When I drove Liesel home, I remembered my co-worker and his logging of gas receipts. My view of the whole process had completely turned around. Gas receipts are reflections of a life in motion. Where have you been, and where are you now? Are you moving more or less than last week, last month, or last year? Do you move less when it costs more to do so?
+
+            Data analytics may not be able to answer those questions. But it can provide some insights into life that you may not realize are right in front of you. You just have to look, so look we shall.
+            """)
