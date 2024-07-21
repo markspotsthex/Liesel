@@ -61,7 +61,9 @@ st.markdown("""
             """)
 st.subheader("Enter Liesel")
 st.markdown("""
-            I bought my car, a Grey 2019 Volkswagen Golf, in June 2019. My prior car was also a Volkswagen, a 2001 Blue Lagoon Jetta that I named _Lorelei_ after a Siren in German mythology. I'm a sentimental person, and I name inanimate objects with which I spent a lot of time, so obviously I was naming the Golf, too. Originally, we planned to lease the Golf, so I jokingly referred to it as _Liesel_. We ended up buying it, but I was enamored with the name, so it stuck.
+            I bought my car, a Grey 2019 Volkswagen Golf, in June 2019. My prior car was also a Volkswagen, a 2001 Blue Lagoon Jetta 1.8T that I named _Lorelei_ after a Siren in German mythology. I'm a sentimental person, and I name inanimate objects with which I spent a lot of time, so obviously I was naming the Golf, too. Just like with boats, I feel cars have feminine spirits. I also name things based on their origin. _Lorelei_ was a German car and needed a German name. I had a Ducati Monster 695 Dark named _Minerva_ after the Roman goddess. So the Golf needed a feminine German name.
+            
+            Originally, we planned to lease the Golf, so I jokingly referred to it as _Liesel_. We ended up buying it, but at that point I was enamored with the name, so it stuck.
 
             _Liesel_ was purchased to be a second car for our household. I didn't need to use it that often to commute to my job, maybe once or twice a week. We have offices out in the suburbs and downtown Chicago, both not far from the train that runs near my house. Then the pandemic struck. I had been using it infrequently before; at that point, I wasn't using it at all.
             """)            
