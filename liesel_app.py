@@ -52,5 +52,16 @@ df_stops['ttrip']=df_stops['trip'].cumsum()
 st.set_page_config(page_title=page_title,layout=layout)
 st.title="Data Analytics on Real World Data: Gas Receipts"
 st.header("Background")
-st.write("I bought my car, a 2019 Volkswagen Golf, in June 2019. It was purchased to be a second car for our household. I didn't use it that often to commute to my job, maybe once or twice a week.  Then the pandemic struck. I had been using it infrequently before; at that point, I wasn't using it at all.")
-st.write("When I was younger, I had a co-worker that kept a log of every time he put gas in his truck. He logged the mileage, the gas consumption, dates, everything. At the time, it seemed weird. But once I got the chance to start fresh with a new car, the whole process sounded pretty interesting.")
+st.markdown("""
+            When I was younger, I had a co-worker that kept a log of every time he put gas in his truck. He logged the mileage, the gas consumption, dates, everything. At the time, it seemed weird. Why go to the trouble? What could you possibly do with all of that information? _How could that possibly be worth the effort?_
+
+            Later that year, I got a graphing calculator for my high school Calculus class. We had to enter coefficients and formulas and out popped these wonky, monochrome graphs. _And it blew my mind._ Functions translated inputs into outputs. I wasn't the best Math student up to that point, but once I began to see how functions explained everything, I was hooked.
+
+            I went to college and earned a Bachelor of Science and Master of Science, both in Mathematics. For the past 25 years, I have been doing data science in one form or another. It wasn't even called _\"data science\"_ back when I started.
+            """)
+st.subheader("Enter Liesel")
+st.markdown("""
+            I bought my car, a Grey 2019 Volkswagen Golf, in June 2019. My prior car was also a Volkswagen, a 2001 Blue Lagoon Jetta that I named _Lorelei_ after a Siren in German mythology. I'm a sentimental person, and I name inanimate objects with which I spent a lot of time, so obviously I was naming the Golf, too. Originally, we planned to lease the Golf, so I jokingly referred to it as _Liesel_. We ended up buying it, but I was enamored with the name, so it stuck.
+
+            _Liesel_ was purchased to be a second car for our household. I didn't need to use it that often to commute to my job, maybe once or twice a week. We have offices out in the suburbs and downtown Chicago, both not far from the train that runs near my house. Then the pandemic struck. I had been using it infrequently before; at that point, I wasn't using it at all.
+            """)            
