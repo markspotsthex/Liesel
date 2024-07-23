@@ -100,8 +100,6 @@ with dataviz:
 
         ax2 = ax1.twinx()
         ax2.scatter(df_stops['date'], df_stops['fcost'],color='tab:red')
-            
-        #plt.show()
         st.pyplot(fig)
 
     with tab22:
@@ -110,7 +108,7 @@ with dataviz:
         xx=np.array(df_stops['dtindex'])
         yy=np.array(df_stops['miles'])
         pw_fit=pwr.Fit(xx,yy,n_breakpoints=2)
-        #pw_fit.summary()
+        pw_fit.summary()
 
         pw_fit.plot_data(color="grey", s=20)
         pw_fit.plot_fit(color="red", linewidth=4) 
@@ -118,8 +116,6 @@ with dataviz:
         pw_fit.plot_breakpoint_confidence_intervals()
         plt.xlabel("xx")
         plt.ylabel("yy")
-        #plt.show()
-        #plt.close()
         st.pyplot(pw_fit)
 
         # Get the key results of the fit 
@@ -131,7 +127,6 @@ with dataviz:
 
     with tab23:
         st.subheader("Gas Price Benchmarking")
-        st.write("Add cool stuff here!")
         fig, ax1 = plt.subplots()
         ax1.scatter(df_stops['date'], df_stops['price'])
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
@@ -143,6 +138,4 @@ with dataviz:
 
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
-
-        #plt.show()
         st.pyplot(fig)
