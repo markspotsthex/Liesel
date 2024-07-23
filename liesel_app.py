@@ -82,15 +82,67 @@ with story:
                     Data analytics may not be able to answer those questions. But it can provide some insights into life that you may not realize are right in front of you. You just have to look, so look we shall.
                     """)
         
-# ---- Data Analytics section ----
+# ---- Data Analytics Processing section ----
 
+
+# ---- Data Analytics Visualization section ----
 dataviz = st.container()
 with dataviz:
     # TODO: add visualizations
-    tab21, tab22 = st.tabs(["Total Mileage","Gas Prices"])
+    tab21, tab22, tab23 = st.tabs(["Total Mileage","Changing Times","Gas Prices"])
     with tab21:
         st.subheader("Total Mileage Traveled")
-        st.write("Add cool stuff here!")
+        fig, ax1 = plt.subplots()
+        ax1.scatter(df_stops['date'], df_stops['miles'])
+        ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
+        for label in ax1.get_xticklabels(which='major'):
+            label.set(rotation=30,horizontalalignment='right')
+
+        ax2 = ax1.twinx()
+        ax2.scatter(df_stops['date'], df_stops['fcost'],color='tab:red')
+            
+        #plt.show()
+        st.pyplot(fig)
+
     with tab22:
+        st.subheader("Total Mileage Traveled")
+
+        xx=np.array(df_stops['dtindex'])
+        yy=np.array(df_stops['miles'])
+        pw_fit=pwr.Fit(xx,yy,n_breakpoints=2)
+        #pw_fit.summary()
+
+        pw_fit.plot_data(color="grey", s=20)
+        pw_fit.plot_fit(color="red", linewidth=4) 
+        pw_fit.plot_breakpoints()
+        pw_fit.plot_breakpoint_confidence_intervals()
+        plt.xlabel("xx")
+        plt.ylabel("yy")
+        #plt.show()
+        #plt.close()
+        st.pyplot(pw_fit)
+
+        # Get the key results of the fit 
+        pw_results = pw_fit.get_results()
+        pw_estimates = pw_results["estimates"]
+        bp1 = liesel_buy+timedelta(days=pw_estimates['breakpoint1']['estimate'])
+        bp2 = liesel_buy+timedelta(days=pw_estimates['breakpoint2']['estimate'])
+        st.write("Driving habits changed on {} and again on {}".format(bp1.strftime('%m/%d/%Y'),bp2.strftime('%m/%d/%Y')))
+
+    with tab23:
         st.subheader("Gas Price Benchmarking")
         st.write("Add cool stuff here!")
+        fig, ax1 = plt.subplots()
+        ax1.scatter(df_stops['date'], df_stops['price'])
+        ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
+        for label in ax1.get_xticklabels(which='major'):
+            label.set(rotation=30,horizontalalignment='right')
+
+        ax2 = ax1.twinx()
+        ax2.scatter(data.index, data['gas'],color='tab:red')
+
+        ax1.set_ylim([0, None])
+        ax2.set_ylim([0, None])
+
+        #plt.show()
+        st.pyplot(fig)
