@@ -52,7 +52,7 @@ df_stops['ttrip']=df_stops['trip'].cumsum()
 st.set_page_config(page_title=page_title,layout=layout)
 st.header("Data Analytics on Real World Data: Gas Receipts")
 
-container = st.container(border=True)
+container = st.container()
 with container:
     tab1, tab2, tab3 = st.tabs(["Background", "Enter Liesel", "Full Circle"])
 
