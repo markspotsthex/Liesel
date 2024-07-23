@@ -87,7 +87,10 @@ with story:
 dataviz = st.container()
 with dataviz:
     # TODO: add visualizations
-    tab1 = st.tabs(["Total Mileage"])
-    with tab1:
+    tab21, tab22 = st.tabs(["Total Mileage","Gas Prices"])
+    with tab21:
         st.subheader("Total Mileage Traveled")
+        st.write("Add cool stuff here!")
+    with tab22:
+        st.subheader("Gas Price Benchmarking")
         st.write("Add cool stuff here!")
