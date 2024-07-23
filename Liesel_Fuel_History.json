@@ -1,17 +1,17 @@
 {
 "stations":[
- {"stationName":"Deerfield Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"2 Waukegan Rd, Deerfield, IL 60015","uid":"5744416306"}}
-,{"stationName":"BP 8937807","attributes":{"price_dim":"$/gal","brand":"BP","address":"Unknown","uid":"8937807"}}
-,{"stationName":"BP 8886525","attributes":{"price_dim":"$/gal","brand":"BP","address":"Unknown","uid":"8886525"}}
-,{"stationName":"3700 W Addison Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"3700 W Addison St, Chicago, IL 60618","uid":"12547993001"}}
-,{"stationName":"BP 5210 Northwest Hwy","attributes":{"price_dim":"$/gal","brand":"BP","address":"5210 Northwest Highway, Chicago, IL 60630","uid":"Unknown"}}
-,{"stationName":"4000 W IP Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"4000 W Irving PArk Rd, Chicago, IL 60641", "uid":"57444176200"}}
-,{"stationName":"Riverwoods Mobil","attributes":{"price_dim":"$/gal","brand":"Mobil","address":"2201 Deerfield Rd, Riverwoods, IL 60015","uid":"FG17128369001"}}
-,{"stationName":"BP 1041900","attributes":{"price_dim":"$/gal","brand":"BP","address":"3201 W Addison St, Chicago, IL 60618","uid":"1041900"}}
-,{"stationName":"Diamond IL Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"3195 E Division St, Diamond, IL 60416","uid":"10047577100"}}
-,{"stationName":"BP 9109927","attributes":{"price_dim":"$/gal","brand":"BP","address":"Unknown","uid":"9109927"}}
-,{"stationName":"Palatine Mobil","attributes":{"price_dim":"$/gal","brand":"Mobil","address":"7 N Northwest Highway, Palatine, IL 60067","uid":"7-Eleven #38977"}}
-,{"stationName":"4401 N Cicero Shell","attributes":{"price_dim":"$/gal","brand":"Shell","address":"4401 N Cicero Ave, Chicago, IL 60630","uid":"57444166201"}}
+ {"stationName":"Deerfield Shell","attributes":{"price_dim":"$/gal","brand":"Shell","location":{"address":"2 Waukegan Rd, Deerfield, IL 60015","latitude":42.153145,"longitude": -87.836049},"uid":"5744416306"}}
+,{"stationName":"BP 8937807","attributes":{"price_dim":"$/gal","brand":"BP","location":{"address":"Unknown"},"uid":"8937807"}}
+,{"stationName":"BP 8886525","attributes":{"price_dim":"$/gal","brand":"BP","location":{"address":"Unknown"},"uid":"8886525"}}
+,{"stationName":"3700 W Addison Shell","attributes":{"price_dim":"$/gal","brand":"Shell","location":{"address":"3700 W Addison St, Chicago, IL 60618","latitude":41.946690,"longitude": -87.720584},"uid":"12547993001"}}
+,{"stationName":"BP 5210 Northwest Hwy","attributes":{"price_dim":"$/gal","brand":"BP","location":{"address":"5210 Northwest Highway, Chicago, IL 60630","latitude":41.975102,"longitude": -87.768988},"uid":"Unknown"}}
+,{"stationName":"4000 W IP Shell","attributes":{"price_dim":"$/gal","brand":"Shell","location":{"address":"4000 W Irving Park Rd, Chicago, IL 60641","latitude":41.953964,"longitude": -87.727929}, "uid":"57444176200"}}
+,{"stationName":"Riverwoods Mobil","attributes":{"price_dim":"$/gal","brand":"Mobil","location":{"address":"2201 Deerfield Rd, Riverwoods, IL 60015","latitude":42.167125,"longitude": -87.882343},"uid":"FG17128369001"}}
+,{"stationName":"BP 1041900","attributes":{"price_dim":"$/gal","brand":"BP","location":{"address":"3201 W Addison St, Chicago, IL 60618","latitude":41.946409,"longitude": -87.708109},"uid":"1041900"}}
+,{"stationName":"Diamond IL Shell","attributes":{"price_dim":"$/gal","brand":"Shell","location":{"address":"3195 E Division St, Diamond, IL 60416","latitude":41.288305,"longitude": -88.235415},"uid":"10047577100"}}
+,{"stationName":"BP 9109927","attributes":{"price_dim":"$/gal","brand":"BP","location":{"address":"Unknown"},"uid":"9109927"}}
+,{"stationName":"Palatine Mobil","attributes":{"price_dim":"$/gal","brand":"Mobil","location":{"address":"7 N Northwest Highway, Palatine, IL 60067","latitude":42.110811,"longitude": -88.033471},"uid":"7-Eleven #38977"}}
+,{"stationName":"4401 N Cicero Shell","attributes":{"price_dim":"$/gal","brand":"Shell","location":{"address":"4401 N Cicero Ave, Chicago, IL 60630","latitude":41.961115,"longitude": -87.747149},"uid":"57444166201"}}
 ],
 "stops":[
  {"datetime":"2019-07-17 07:46","stationName":"Deerfield Shell","gal":7.040,"price":3.279,"credit":23.08,"trip":210.9,"miles":215}
