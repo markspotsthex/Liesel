@@ -109,7 +109,7 @@ with dataviz:
     with tab21:
         st.subheader("Total Mileage Traveled and Cost Incurred")
         st.write("""
-                 The first thing I wanted to look at what cumulative mileage and costs.
+                 The first thing I wanted to look at cumulative mileage and costs. Mileage is already a cumulative data element, and it's pretty easy to create the cumulative sums of costs.
                  """)
         st.code(code_PD,language="python")
         fig, ax1 = plt.subplots()
