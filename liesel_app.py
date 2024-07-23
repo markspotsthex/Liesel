@@ -108,6 +108,10 @@ with dataviz:
     tab21, tab22, tab23 = st.tabs(["Total Mileage","Gas Prices","Changing Times"])
     with tab21:
         st.subheader("Total Mileage Traveled and Cost Incurred")
+        st.write("""
+                 The first thing I wanted to look at what cumulative mileage and costs.
+                 """)
+        st.code(code_PD,language="python")
         fig, ax1 = plt.subplots()
         ax1.scatter(df_stops['date'], df_stops['miles'])
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
@@ -118,7 +122,7 @@ with dataviz:
         ax2.scatter(df_stops['date'], df_stops['fcost'],color='tab:red')
         st.pyplot(fig)
         st.write("""
-                 The first thing I wanted to look at what cumulative mileage and costs. The blue series represents the cumulative mileage traveled at each refill. The red series represents the cumulative cost paid for gas.
+                 The blue series represents the cumulative mileage traveled at each refill. The red series represents the cumulative cost paid for gas.
                  """)
         st.code(code_PD,language="puthon")
 
