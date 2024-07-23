@@ -32,6 +32,13 @@ fred= Fred(api_key=st.secrets["FRED_API_KEY"])
 data={}
 data['gas']=fred.get_series('GASREGW',observation_start=liesel_buy)
 data=pd.DataFrame(data)
+
+code_FRED="""
+fred= Fred(api_key=st.secrets["FRED_API_KEY"])
+data={}
+data['gas']=fred.get_series('GASREGW',observation_start=liesel_buy)
+data=pd.DataFrame(data)
+"""
 # -----------------------
 
 # ---- internal data ----
@@ -117,7 +124,11 @@ with dataviz:
         ax2.set_ylim([0, None])
         st.pyplot(fig)
         st.write("""
-                 Since I did most of my driving within 150 miles of Chicago, I wanted to know if the prices I paid for gas tracked well with gas prices nationwide. So I pulled the series of gas prices from the Federal Reserve Economics Database (FRED). Plotting what I paid in blue against what prices were nationally in red, looks pretty consistent.
+                 Since I did most of my driving within 150 miles of Chicago, I wanted to know if the prices I paid for gas tracked well with gas prices nationwide. So I pulled the series of gas prices from the Federal Reserve Economics Database (FRED).
+                 """)
+        st.code(code_FRED,language="python")
+        st.write("""
+                 Plotting what I paid in blue against what prices were nationally in red, looks pretty consistent.
                  """)
 
     # with tab23:
