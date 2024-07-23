@@ -157,7 +157,7 @@ with dataviz:
                  As you can see in the map below, I haven't driven my car on any long distance trips. It's a comfortable ride, but the trunk is small, and my family doesn't pack light. The furthest my car has driven is to Normal, IL (not shown on map).
                  """)
         st_folium(map_osm)
-        st.code()
+        st.code(code_Map)
         st.write("""
                  Since I did most of my driving within 150 miles of Chicago, I wanted to know if the prices I paid for gas tracked well with gas prices nationwide. So I pulled the series of gas prices from the Federal Reserve Economics Database (FRED).
                  """)
