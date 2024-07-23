@@ -89,7 +89,7 @@ with story:
 dataviz = st.container()
 with dataviz:
     # TODO: add visualizations
-    tab21, tab22, tab23 = st.tabs(["Total Mileage","Changing Times","Gas Prices"])
+    tab21, tab22, tab23 = st.tabs(["Total Mileage","Gas Prices","Changing Times"])
     with tab21:
         st.subheader("Total Mileage Traveled")
         fig, ax1 = plt.subplots()
@@ -101,29 +101,6 @@ with dataviz:
         ax2 = ax1.twinx()
         ax2.scatter(df_stops['date'], df_stops['fcost'],color='tab:red')
         st.pyplot(fig)
-
-    with tab22:
-        st.subheader("Total Mileage Traveled")
-
-        xx=np.array(df_stops['dtindex'])
-        yy=np.array(df_stops['miles'])
-        pw_fit=pwr.Fit(xx,yy,n_breakpoints=2)
-        pw_fit.summary()
-
-        pw_fit.plot_data(color="grey", s=20)
-        pw_fit.plot_fit(color="red", linewidth=4) 
-        pw_fit.plot_breakpoints()
-        pw_fit.plot_breakpoint_confidence_intervals()
-        plt.xlabel("xx")
-        plt.ylabel("yy")
-        st.pyplot(pw_fit)
-
-        # Get the key results of the fit 
-        pw_results = pw_fit.get_results()
-        pw_estimates = pw_results["estimates"]
-        bp1 = liesel_buy+timedelta(days=pw_estimates['breakpoint1']['estimate'])
-        bp2 = liesel_buy+timedelta(days=pw_estimates['breakpoint2']['estimate'])
-        st.write("Driving habits changed on {} and again on {}".format(bp1.strftime('%m/%d/%Y'),bp2.strftime('%m/%d/%Y')))
 
     with tab23:
         st.subheader("Gas Price Benchmarking")
@@ -139,3 +116,26 @@ with dataviz:
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
         st.pyplot(fig)
+
+    # with tab23:
+    #     st.subheader("Total Mileage Traveled")
+
+    #     xx=np.array(df_stops['dtindex'])
+    #     yy=np.array(df_stops['miles'])
+    #     pw_fit=pwr.Fit(xx,yy,n_breakpoints=2)
+    #     pw_fit.summary()
+
+    #     pw_fit.plot_data(color="grey", s=20)
+    #     pw_fit.plot_fit(color="red", linewidth=4) 
+    #     pw_fit.plot_breakpoints()
+    #     pw_fit.plot_breakpoint_confidence_intervals()
+    #     plt.xlabel("xx")
+    #     plt.ylabel("yy")
+    #     st.pyplot(pw_fit)
+
+    #     # Get the key results of the fit 
+    #     pw_results = pw_fit.get_results()
+    #     pw_estimates = pw_results["estimates"]
+    #     bp1 = liesel_buy+timedelta(days=pw_estimates['breakpoint1']['estimate'])
+    #     bp2 = liesel_buy+timedelta(days=pw_estimates['breakpoint2']['estimate'])
+    #     st.write("Driving habits changed on {} and again on {}".format(bp1.strftime('%m/%d/%Y'),bp2.strftime('%m/%d/%Y')))
