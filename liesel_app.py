@@ -126,7 +126,7 @@ with story:
 dataviz = st.container()
 with dataviz:
     # TODO: add visualizations
-    tab21, tab22, tab23 = st.tabs(["Total Mileage","Gas Prices","Changing Times"])
+    tab21, tab22, tab23 = st.tabs(["Total Mileage","Location Analysis","Gas Prices"])
     with tab21:
         st.subheader("Total Mileage Traveled and Cost Incurred")
         st.write("""
@@ -158,6 +158,7 @@ with dataviz:
                  """)
         st_folium(map_osm)
         st.code(code_Map)
+    with tab23:
         st.write("""
                  Since I did most of my driving within 150 miles of Chicago, I wanted to know if the prices I paid for gas tracked well with gas prices nationwide. So I pulled the series of gas prices from the Federal Reserve Economics Database (FRED).
                  """)
