@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+from streamlit_folium import st_folium
 import plotly.graph_objects as go
 
 import urllib.request
@@ -8,6 +9,7 @@ from datetime import datetime, date, timedelta
 
 import pandas as pd
 import numpy as np
+import folium
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from fredapi import Fred
@@ -46,7 +48,26 @@ fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel
 with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 
-df_stations = pd.DataFrame(fh['stations'])
+#df_stations = pd.DataFrame(fh['stations'])
+
+loc_name=[station['stationName'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+loc_latitude=[station['attributes']['location']['latitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+loc_longitude=[station['attributes']['location']['longitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
+loc_df = pd.DataFrame(data=loc_data)
+code_LL = """
+          loc_name=[station['stationName'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+          loc_latitude=[station['attributes']['location']['latitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+          loc_longitude=[station['attributes']['location']['longitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+          loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
+          loc_df = pd.DataFrame(data=loc_data)
+          """
+map_osm = folium.Map(location=[41.950939, -87.742929],zoom_start=8)
+loc_df.apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]]).add_to(map_osm),axis=1)
+code_Map="""
+         map_osm = folium.Map(location=[41.950939, -87.742929],zoom_start=8)
+         loc_df.apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]]).add_to(map_osm),axis=1)
+         """
 
 df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
 df_stops['date']=pd.to_datetime(df_stops['datetime'])
@@ -128,6 +149,15 @@ with dataviz:
 
     with tab22:
         st.subheader("Gas Price Benchmarking")
+        st.write("""
+                 One of the data elements I captured was the location where I filled my tank. I didn't intend to be selective, but I have only pumped gas at about a dozen gas stations. The code below will show how I created a Pandas DataFrame for analysis.
+                 """)
+        st.code(code_LL)
+        st.write("""
+                 As you can see in the map below, I haven't driven my car on any long distance trips. It's a comfortable ride, but the trunk is small, and my family doesn't pack light. The furthest my car has driven is to Normal, IL (not shown on map).
+                 """)
+        st_folium(map_osm)
+        st.code()
         st.write("""
                  Since I did most of my driving within 150 miles of Chicago, I wanted to know if the prices I paid for gas tracked well with gas prices nationwide. So I pulled the series of gas prices from the Federal Reserve Economics Database (FRED).
                  """)
