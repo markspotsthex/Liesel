@@ -128,6 +128,13 @@ with dataviz:
 
     with tab22:
         st.subheader("Gas Price Benchmarking")
+        st.write("""
+                 Since I did most of my driving within 150 miles of Chicago, I wanted to know if the prices I paid for gas tracked well with gas prices nationwide. So I pulled the series of gas prices from the Federal Reserve Economics Database (FRED).
+                 """)
+        st.code(code_FRED,language="python")
+        st.write("""
+                 Now that I have gas prices for my transactions and for the nation, I can plot to compare them.
+                 """)
         fig, ax1 = plt.subplots()
         ax1.scatter(df_stops['date'], df_stops['price'])
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
@@ -140,10 +147,6 @@ with dataviz:
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
         st.pyplot(fig)
-        st.write("""
-                 Since I did most of my driving within 150 miles of Chicago, I wanted to know if the prices I paid for gas tracked well with gas prices nationwide. So I pulled the series of gas prices from the Federal Reserve Economics Database (FRED).
-                 """)
-        st.code(code_FRED,language="python")
         st.write("""
                  Plotting what I paid in blue against what prices were nationally in red, looks pretty consistent.
                  """)
