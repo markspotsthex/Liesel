@@ -54,6 +54,15 @@ df_stops['dtindex']=(df_stops['date']-liesel_buy).dt.days
 df_stops['mpg']=df_stops['trip']/df_stops['gal']
 df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
+
+code_PD="""
+df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
+df_stops['date']=pd.to_datetime(df_stops['datetime'])
+df_stops['dtindex']=(df_stops['date']-liesel_buy).dt.days
+df_stops['mpg']=df_stops['trip']/df_stops['gal']
+df_stops['fcost']=df_stops['credit'].cumsum()
+df_stops['ttrip']=df_stops['trip'].cumsum()
+"""
 # -----------------------
 
 st.set_page_config(page_title=page_title,layout=layout)
@@ -98,7 +107,7 @@ with dataviz:
     # TODO: add visualizations
     tab21, tab22, tab23 = st.tabs(["Total Mileage","Gas Prices","Changing Times"])
     with tab21:
-        st.subheader("Total Mileage Traveled")
+        st.subheader("Total Mileage Traveled and Cost Incurred")
         fig, ax1 = plt.subplots()
         ax1.scatter(df_stops['date'], df_stops['miles'])
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
@@ -108,6 +117,10 @@ with dataviz:
         ax2 = ax1.twinx()
         ax2.scatter(df_stops['date'], df_stops['fcost'],color='tab:red')
         st.pyplot(fig)
+        st.write("""
+                 The first thing I wanted to look at what cumulative mileage and costs. The blue series represents the cumulative mileage traveled at each refill. The red series represents the cumulative cost paid for gas.
+                 """)
+        st.code(code_PD,language="puthon")
 
     with tab22:
         st.subheader("Gas Price Benchmarking")
