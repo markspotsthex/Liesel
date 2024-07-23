@@ -124,7 +124,7 @@ with dataviz:
         st.write("""
                  The blue series represents the cumulative mileage traveled at each refill. The red series represents the cumulative cost paid for gas.
                  """)
-        st.code(code_PD,language="puthon")
+        st.code(code_PD,language="python")
 
     with tab22:
         st.subheader("Gas Price Benchmarking")
