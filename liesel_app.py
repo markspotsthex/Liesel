@@ -52,8 +52,8 @@ df_stops['ttrip']=df_stops['trip'].cumsum()
 st.set_page_config(page_title=page_title,layout=layout)
 st.header("Data Analytics on Real World Data: Gas Receipts")
 
-container = st.container()
-with container:
+story = st.container()
+with story:
     tab1, tab2, tab3 = st.tabs(["Background", "Enter Liesel", "Full Circle"])
 
     with tab1:
@@ -81,3 +81,13 @@ with container:
 
                     Data analytics may not be able to answer those questions. But it can provide some insights into life that you may not realize are right in front of you. You just have to look, so look we shall.
                     """)
+        
+# ---- Data Analytics section ----
+
+dataviz = st.container()
+with dataviz:
+    # TODO: add visualizations
+    tab1 = st.tabs(["Total Mileage"])
+    with tab1:
+        st.subheader("Total Mileage Traveled")
+        st.write("Add cool stuff here!")
