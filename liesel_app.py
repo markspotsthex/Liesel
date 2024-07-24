@@ -160,6 +160,9 @@ with dataviz:
                  As you can see in the map below, I haven't driven my car on any long distance trips. It's a comfortable ride, but the trunk is small, and my family doesn't pack light. The furthest my car has driven is to Normal, IL (not shown on map).
                  """)
         folium_static(map_osm,height=800, width=700)
+        st.write("""
+                 Folium is a pretty powerful mapping tool for Python, but it doesn't require a lot of code to create a map.
+                 """)
         st.code(code_Map)
     with tab23:
         st.subheader("Gas Price Benchmarking")
