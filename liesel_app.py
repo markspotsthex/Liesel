@@ -148,7 +148,7 @@ with dataviz:
         st.code(code_PD,language="python")
 
     with tab22:
-        st.subheader("Gas Price Benchmarking")
+        st.subheader("Refueling Location Analysis")
         st.write("""
                  One of the data elements I captured was the location where I filled my tank. I didn't intend to be selective, but I have only pumped gas at about a dozen gas stations. The code below will show how I created a Pandas DataFrame for analysis.
                  """)
@@ -159,6 +159,7 @@ with dataviz:
         st_folium(map_osm)
         st.code(code_Map)
     with tab23:
+        st.subheader("Gas Price Benchmarking")
         st.write("""
                  Since I did most of my driving within 150 miles of Chicago, I wanted to know if the prices I paid for gas tracked well with gas prices nationwide. So I pulled the series of gas prices from the Federal Reserve Economics Database (FRED).
                  """)
