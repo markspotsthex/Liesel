@@ -15,8 +15,8 @@ pandemic_st = datetime(2020,3,11)
 pandemic_end= datetime(2022,4,13)
 rto = datetime(2023,4,17)
 
-api_key='a0422a022699ba22a37f77ac785e6bed'
-fred= Fred(api_key=api_key)
+fred_api_key='a0422a022699ba22a37f77ac785e6bed'
+fred= Fred(api_key=fred_api_key)
 data={}
 data['gas']=fred.get_series('GASREGW',observation_start=liesel_buy)
 data=pd.DataFrame(data)
