@@ -65,10 +65,10 @@ code_LL = """
           loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
           loc_df = pd.DataFrame(data=loc_data)
           """
-map_osm = folium.Map(location=[41.950939, -87.742929],zoom_start=8)
+map_osm = folium.Map(location=st.secrets["s_LOCATION"],zoom_start=8)
 loc_df.apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]]).add_to(map_osm),axis=1)
 code_Map="""
-         map_osm = folium.Map(location=[41.950939, -87.742929],zoom_start=8)
+         map_osm = folium.Map(location=[LAT, LONG],zoom_start=8)
          loc_df.apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]]).add_to(map_osm),axis=1)
          """
 
