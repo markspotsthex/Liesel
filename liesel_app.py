@@ -159,7 +159,7 @@ with dataviz:
         st.write("""
                  As you can see in the map below, I haven't driven my car on any long distance trips. It's a comfortable ride, but the trunk is small, and my family doesn't pack light. The furthest my car has driven is to Normal, IL (not shown on map).
                  """)
-        st_folium(map_osm)
+        st_folium(map_osm, width=700)
         st.code(code_Map)
     with tab23:
         st.subheader("Gas Price Benchmarking")
