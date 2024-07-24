@@ -56,6 +56,9 @@ loc_longitude=[station['attributes']['location']['longitude'] for station in fh[
 loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
 loc_df = pd.DataFrame(data=loc_data)
 code_LL = """
+          fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
+          with urllib.request.urlopen(fpath) as url:
+              fh = json.load(url)
           loc_name=[station['stationName'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
           loc_latitude=[station['attributes']['location']['latitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
           loc_longitude=[station['attributes']['location']['longitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
