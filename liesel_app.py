@@ -176,7 +176,7 @@ with dataviz:
                  """)
         st.code(code_FRED,language="python")
         st.write("""
-                 Now that I have gas prices for my transactions and for the nation, I can plot to compare them.
+                 Now that I have gas prices for my transactions and for the nation, I can create a plot to compare them.
                  """)
         fig, ax1 = plt.subplots()
         ax1.scatter(df_stops['datetime'], df_stops['price'])
