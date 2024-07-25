@@ -157,11 +157,22 @@ with dataviz:
 
         ax2 = ax1.twinx()
         ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red')
+        code_mplt1="""
+        fig, ax1 = plt.subplots()
+        ax1.scatter(df_stops['datetime'], df_stops['miles'])
+        ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
+        for label in ax1.get_xticklabels(which='major'):
+            label.set(rotation=30,horizontalalignment='right')
+
+        ax2 = ax1.twinx()
+        ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red')
+        plt.show()
+        """
         st.pyplot(fig)
         st.write("""
                  The blue series represents the cumulative mileage traveled at each refill. The red series represents the cumulative cost paid for gas.
                  """)
-        st.code(code_PD,language="python")
+        st.code(code_mplt1,language="python")
 
     with tab22:
         st.subheader("Refueling Location Analysis")
