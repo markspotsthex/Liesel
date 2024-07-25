@@ -9,6 +9,7 @@ from datetime import datetime, date, timedelta
 
 import pandas as pd
 import numpy as np
+from numpy.polynomial.polynomial import polyfit
 import folium
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -34,12 +35,16 @@ fred= Fred(api_key=st.secrets["FRED_API_KEY"])
 data={}
 data['gas']=fred.get_series('GASREGW',observation_start=liesel_buy)
 data=pd.DataFrame(data)
+data['mdate']=pd.to_datetime(data.index)
+data=data[['mdate','gas']]
 
 code_FRED="""
 fred= Fred(api_key=st.secrets["FRED_API_KEY"])
 data={}
 data['gas']=fred.get_series('GASREGW',observation_start=liesel_buy)
 data=pd.DataFrame(data)
+data['mdate']=pd.to_datetime(data.index)
+data=data[['mdate','gas']]
 """
 # -----------------------
 
@@ -48,41 +53,41 @@ fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel
 with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 
-#df_stations = pd.DataFrame(fh['stations'])
-
 loc_name=[station['stationName'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
 loc_latitude=[station['attributes']['location']['latitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
 loc_longitude=[station['attributes']['location']['longitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
 loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
 loc_df = pd.DataFrame(data=loc_data)
 code_LL = """
-          fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
-          with urllib.request.urlopen(fpath) as url:
-              fh = json.load(url)
-          loc_name=[station['stationName'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
-          loc_latitude=[station['attributes']['location']['latitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
-          loc_longitude=[station['attributes']['location']['longitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
-          loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
-          loc_df = pd.DataFrame(data=loc_data)
-          """
+fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
+with urllib.request.urlopen(fpath) as url:
+    fh = json.load(url)
+loc_name=[station['stationName'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+loc_latitude=[station['attributes']['location']['latitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+loc_longitude=[station['attributes']['location']['longitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
+loc_df = pd.DataFrame(data=loc_data)
+"""
 map_osm = folium.Map(location=st.secrets["s_LOCATION"],zoom_start=8)
 loc_df.apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]]).add_to(map_osm),axis=1)
 code_Map="""
-         map_osm = folium.Map(location=[LAT, LONG],zoom_start=8)
-         loc_df.apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]]).add_to(map_osm),axis=1)
-         """
+map_osm = folium.Map(location=[LAT, LONG],zoom_start=8)
+loc_df.apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]]).add_to(map_osm),axis=1)
+"""
 
 df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
-df_stops['date']=pd.to_datetime(df_stops['datetime'])
-df_stops['dtindex']=(df_stops['date']-liesel_buy).dt.days
+df_stops['datetime']=pd.to_datetime(df_stops['datetime'])
+df_stops['mdate']=pd.to_datetime(df_stops['datetime'].dt.date)-pd.tseries.offsets.Week(weekday=0)
+df_stops['dtindex']=(df_stops['datetime']-liesel_buy).dt.days
 df_stops['mpg']=df_stops['trip']/df_stops['gal']
 df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
 
 code_PD="""
 df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
-df_stops['date']=pd.to_datetime(df_stops['datetime'])
-df_stops['dtindex']=(df_stops['date']-liesel_buy).dt.days
+df_stops['datetime']=pd.to_datetime(df_stops['datetime'])
+df_stops['mdate']=pd.to_datetime(df_stops['datetime'].dt.date)-pd.tseries.offsets.Week(weekday=0)
+df_stops['dtindex']=(df_stops['datetime']-liesel_buy).dt.days
 df_stops['mpg']=df_stops['trip']/df_stops['gal']
 df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
@@ -137,13 +142,13 @@ with dataviz:
                  """)
         st.code(code_PD,language="python")
         fig, ax1 = plt.subplots()
-        ax1.scatter(df_stops['date'], df_stops['miles'])
+        ax1.scatter(df_stops['datetime'], df_stops['miles'])
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
         ax2 = ax1.twinx()
-        ax2.scatter(df_stops['date'], df_stops['fcost'],color='tab:red')
+        ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red')
         st.pyplot(fig)
         st.write("""
                  The blue series represents the cumulative mileage traveled at each refill. The red series represents the cumulative cost paid for gas.
@@ -174,7 +179,7 @@ with dataviz:
                  Now that I have gas prices for my transactions and for the nation, I can plot to compare them.
                  """)
         fig, ax1 = plt.subplots()
-        ax1.scatter(df_stops['date'], df_stops['price'])
+        ax1.scatter(df_stops['datetime'], df_stops['price'])
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
@@ -184,10 +189,51 @@ with dataviz:
 
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
+        code_gplt1="""
+        fig, ax1 = plt.subplots()
+        ax1.scatter(df_stops['datetime'], df_stops['price'])
+        ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
+        for label in ax1.get_xticklabels(which='major'):
+            label.set(rotation=30,horizontalalignment='right')
+
+        ax2 = ax1.twinx()
+        ax2.scatter(data.index, data['gas'],color='tab:red')
+
+        ax1.set_ylim([0, None])
+        ax2.set_ylim([0, None])
+        plt.show()
+        """
+        st.code(code_gplt1)
         st.pyplot(fig)
         st.write("""
-                 Plotting what I paid in blue against what prices were nationally in red, looks pretty consistent.
+                 Plotting what I paid in blue against what prices were nationally in red, looks pretty consistent. But it would be better to establish that there is a consistent, linear relationship between the price I paid and the national average price of gas. So let's check that.
                  """)
+        df_gpr = df_stops[['mdate','price']].merge(right=data[['mdate','gas']],how='inner',on=['mdate'],suffixes=(False,False))        
+        fig, ax1 = plt.subplots()
+        # Fit with polyfit
+        b, m = polyfit(df_gpr['gas'], df_gpr['price'], 1)
+        # Add scatterplot
+        ax1.scatter(df_gpr['gas'], df_gpr['price'], s=60, alpha=0.7, edgecolors="k")
+        plt.axline(xy1=(0, b), slope=m, color='r', label=f'$y = {m:.2f}x {b:+.2f}$')
+        plt.legend()
+        ax1.set_xlim([1.5,None])
+        code_gplt2="""
+        df_gpr = df_stops[['mdate','price']].merge(right=data[['mdate','gas']],how='inner',on=['mdate'],suffixes=(False,False))        
+        fig, ax1 = plt.subplots()
+        # Fit with polyfit
+        b, m = polyfit(df_gpr['gas'], df_gpr['price'], 1)
+        # Add scatterplot
+        ax1.scatter(df_gpr['gas'], df_gpr['price'], s=60, alpha=0.7, edgecolors="k")
+        plt.axline(xy1=(0, b), slope=m, color='r', label=f'$y = {m:.2f}x {b:+.2f}$')
+        plt.legend()
+        ax1.set_xlim([1.5,None])
+        plt.show()
+        """
+        st.pyplot(fig)
+        st.write("""
+                 It's a fairly straight line without heteroskedasticity. If you're interested in knowing how to plot this, the code is shown below.
+                 """)
+        st.code(code_gplt2)
 
     # with tab23:
     #     st.subheader("Total Mileage Traveled")
