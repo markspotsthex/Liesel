@@ -206,7 +206,7 @@ with dataviz:
         st.code(code_gplt1)
         st.pyplot(fig)
         st.write("""
-                 Plotting what I paid in blue against what prices were nationally in red, looks pretty consistent. But it would be better to establish that there is a consistent, linear relationship between the price I paid and the national average price of gas. So let's check that.
+                 Plotting what I paid in blue against what prices were nationally in red, and it looks pretty consistent. But it would be better to establish _how_ consistent by checking if a linear relationship exists between the price I paid and the national average price of gas. So let's check that.
                  """)
         df_gpr = df_stops[['mdate','price']].merge(right=data[['mdate','gas']],how='inner',on=['mdate'],suffixes=(False,False))        
         fig, ax1 = plt.subplots()
