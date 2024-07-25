@@ -231,7 +231,9 @@ with dataviz:
         """
         st.pyplot(fig)
         st.write("""
-                 It's a fairly straight line without heteroskedasticity. If you're interested in knowing how to plot this, the code is shown below.
+                 It's a fairly straight line without heteroskedasticity. I think it's safe to say there is a linear relationship.
+                 
+                 If you're interested in knowing how to plot this, the code is shown below.
                  """)
         st.code(code_gplt2)
 
