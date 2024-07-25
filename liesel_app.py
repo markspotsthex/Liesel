@@ -43,6 +43,7 @@ fred= Fred(api_key=st.secrets["FRED_API_KEY"])
 data={}
 data['gas']=fred.get_series('GASREGW',observation_start=liesel_buy)
 data=pd.DataFrame(data)
+# Add named date field for later merging
 data['mdate']=pd.to_datetime(data.index)
 data=data[['mdate','gas']]
 """
@@ -62,9 +63,11 @@ code_LL = """
 fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
 with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
+# use list comprehensions to parse the JSON into data series
 loc_name=[station['stationName'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
 loc_latitude=[station['attributes']['location']['latitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
 loc_longitude=[station['attributes']['location']['longitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
+# Combine series into Pandas data frame
 loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
 loc_df = pd.DataFrame(data=loc_data)
 """
@@ -84,10 +87,15 @@ df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
 
 code_PD="""
+fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
+with urllib.request.urlopen(fpath) as url:
+    fh = json.load(url)
 df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
+# adding some date variables
 df_stops['datetime']=pd.to_datetime(df_stops['datetime'])
 df_stops['mdate']=pd.to_datetime(df_stops['datetime'].dt.date)-pd.tseries.offsets.Week(weekday=0)
 df_stops['dtindex']=(df_stops['datetime']-liesel_buy).dt.days
+# adding data variables
 df_stops['mpg']=df_stops['trip']/df_stops['gal']
 df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
@@ -191,11 +199,13 @@ with dataviz:
         ax2.set_ylim([0, None])
         code_gplt1="""
         fig, ax1 = plt.subplots()
+        # first plot: price of gas paid
         ax1.scatter(df_stops['datetime'], df_stops['price'])
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
+        # second plot: national average gas price from FRED database
         ax2 = ax1.twinx()
         ax2.scatter(data.index, data['gas'],color='tab:red')
 
@@ -203,7 +213,7 @@ with dataviz:
         ax2.set_ylim([0, None])
         plt.show()
         """
-        st.code(code_gplt1)
+        st.code(code_gplt1,language="python")
         st.pyplot(fig)
         st.write("""
                  Plotting what I paid in blue against what prices were nationally in red, and it looks pretty consistent. But it would be better to establish _how_ consistent by checking if a linear relationship exists between the price I paid and the national average price of gas. So let's check that.
@@ -235,7 +245,7 @@ with dataviz:
                  
                  If you're interested in knowing how to plot this, the code is shown below.
                  """)
-        st.code(code_gplt2)
+        st.code(code_gplt2,language="python")
 
     # with tab23:
     #     st.subheader("Total Mileage Traveled")
