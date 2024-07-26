@@ -10,6 +10,8 @@ from datetime import datetime, date, timedelta
 import pandas as pd
 import numpy as np
 from numpy.polynomial.polynomial import polyfit
+from scipy.stats import norm
+import statistics
 import folium
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
