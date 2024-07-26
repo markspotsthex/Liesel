@@ -54,28 +54,24 @@ fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel
 with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 
-loc_name=[station['stationName'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
-loc_latitude=[station['attributes']['location']['latitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
-loc_longitude=[station['attributes']['location']['longitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
-loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
-loc_df = pd.DataFrame(data=loc_data)
+loc_df=pd.DataFrame([[station['stationName'],station['attributes']['location']['latitude'],station['attributes']['location']['longitude'],station['attributes']['location']['county']] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"],columns=['Name','Latitude','Longitude','County'])
 code_LL = """
 fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
 with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 # use list comprehensions to parse the JSON into data series
-loc_name=[station['stationName'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
-loc_latitude=[station['attributes']['location']['latitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
-loc_longitude=[station['attributes']['location']['longitude'] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"]
-# Combine series into Pandas data frame
-loc_data={"Name": loc_name, "Latitude": loc_latitude, "Longitude": loc_longitude}
-loc_df = pd.DataFrame(data=loc_data)
+loc_df=pd.DataFrame([[station['stationName'],station['attributes']['location']['latitude'],station['attributes']['location']['longitude'],station['attributes']['location']['county']] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"],columns=['Name','Latitude','Longitude','County'])
 """
-map_osm = folium.Map(location=st.secrets["s_LOCATION"],zoom_start=8)
-loc_df.apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]]).add_to(map_osm),axis=1)
+map_osm = folium.Map(location=[42,-87],zoom_start=8)
+loc_df.loc[loc_df['County']=='Cook (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="blue",).add_to(map_osm),axis=1)
+loc_df.loc[loc_df['County']=='Lake (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="green",).add_to(map_osm),axis=1)
+loc_df.loc[loc_df['County']=='Will (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="red",).add_to(map_osm),axis=1)
 code_Map="""
-map_osm = folium.Map(location=[LAT, LONG],zoom_start=8)
-loc_df.apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]]).add_to(map_osm),axis=1)
+map_osm = folium.Map(location=[42,-87],zoom_start=8)
+# markers colored to reflect the IL county in which the station resides
+loc_df.loc[loc_df['County']=='Cook (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="blue",).add_to(map_osm),axis=1)
+loc_df.loc[loc_df['County']=='Lake (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="green",).add_to(map_osm),axis=1)
+loc_df.loc[loc_df['County']=='Will (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="red",).add_to(map_osm),axis=1)
 """
 
 df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
