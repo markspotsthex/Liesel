@@ -81,11 +81,10 @@ loc_df.loc[loc_df['County']=='Will (IL)'].apply(lambda row:folium.CircleMarker(l
 """
 
 df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
+# date variables
 df_stops['datetime']=pd.to_datetime(df_stops['datetime'])
 df_stops['mdate']=pd.to_datetime(df_stops['datetime'].dt.date)-pd.tseries.offsets.Week(weekday=0)
 df_stops['dtindex']=(df_stops['datetime']-liesel_buy).dt.days
-# computed variables
-df_stops['mpg']=df_stops['trip']/df_stops['gal']
 # cumulative variables
 df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
@@ -94,16 +93,18 @@ df_stops['miles_diff']=df_stops['miles'].diff()
 df_stops['miles_diff']=df_stops['miles_diff'].fillna(df_stops['miles'])
 df_stops['dtbetween']=df_stops['dtindex'].diff()
 df_stops['dtbetween']=df_stops['dtbetween'].fillna(df_stops['dtindex'])
+# computed variables
+df_stops['mpg']=df_stops['miles_diff']/df_stops['gal']
+df_stops['daily_mi']=df_stops['miles_diff']/df_stops['dtbetween']
 code_PD="""
 fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
 with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
+# date variables
 df_stops['datetime']=pd.to_datetime(df_stops['datetime'])
 df_stops['mdate']=pd.to_datetime(df_stops['datetime'].dt.date)-pd.tseries.offsets.Week(weekday=0)
 df_stops['dtindex']=(df_stops['datetime']-liesel_buy).dt.days
-# computed variables
-df_stops['mpg']=df_stops['trip']/df_stops['gal']
 # cumulative variables
 df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
@@ -111,7 +112,12 @@ df_stops['ttrip']=df_stops['trip'].cumsum()
 df_stops['miles_diff']=df_stops['miles'].diff()
 df_stops['miles_diff']=df_stops['miles_diff'].fillna(df_stops['miles'])
 df_stops['dtbetween']=df_stops['dtindex'].diff()
-df_stops['dtbetween']=df_stops['dtbetween'].fillna(df_stops['dtindex'])"""
+df_stops['dtbetween']=df_stops['dtbetween'].fillna(df_stops['dtindex'])
+# computed variables
+df_stops['mpg']=df_stops['miles_diff']/df_stops['gal']
+df_stops['daily_mi']=df_stops['miles_diff']/df_stops['dtbetween']
+"""
+
 # -----------------------
 
 st.set_page_config(page_title=page_title,layout=layout)
