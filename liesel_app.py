@@ -57,23 +57,27 @@ with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 
 loc_df=pd.DataFrame([[station['stationName'],station['attributes']['location']['latitude'],station['attributes']['location']['longitude'],station['attributes']['location']['county']] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"],columns=['Name','Latitude','Longitude','County'])
+loc_col={'Cook (IL)':"blue",'Lake (IL)':"green",'Will (IL)':"red"}
+loc_df['col']=loc_df['County'].map(loc_col)
 code_LL = """
 fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
 with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 # use list comprehensions to parse the JSON into data series
 loc_df=pd.DataFrame([[station['stationName'],station['attributes']['location']['latitude'],station['attributes']['location']['longitude'],station['attributes']['location']['county']] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"],columns=['Name','Latitude','Longitude','County'])
+loc_col={'Cook (IL)':"blue",'Lake (IL)':"green",'Will (IL)':"red"}
+loc_df['col']=loc_df['County'].map(loc_col)
 """
-map_osm = folium.Map(location=[42,-87],zoom_start=8)
-loc_df.loc[loc_df['County']=='Cook (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="blue",).add_to(map_osm),axis=1)
-loc_df.loc[loc_df['County']=='Lake (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="green",).add_to(map_osm),axis=1)
-loc_df.loc[loc_df['County']=='Will (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="red",).add_to(map_osm),axis=1)
+map_osm = folium.Map(location=st.secrets['s_LOCATION'],zoom_start=8)
+loc_df.loc[loc_df['County']=='Cook (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
+loc_df.loc[loc_df['County']=='Lake (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
+loc_df.loc[loc_df['County']=='Will (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
 code_Map="""
 map_osm = folium.Map(location=[42,-87],zoom_start=8)
 # markers colored to reflect the IL county in which the station resides
-loc_df.loc[loc_df['County']=='Cook (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="blue",).add_to(map_osm),axis=1)
-loc_df.loc[loc_df['County']=='Lake (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="green",).add_to(map_osm),axis=1)
-loc_df.loc[loc_df['County']=='Will (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color="red",).add_to(map_osm),axis=1)
+loc_df.loc[loc_df['County']=='Cook (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
+loc_df.loc[loc_df['County']=='Lake (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
+loc_df.loc[loc_df['County']=='Will (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
 """
 
 df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
@@ -140,7 +144,7 @@ with story:
 dataviz = st.container()
 with dataviz:
     # TODO: add visualizations
-    tab21, tab22, tab23 = st.tabs(["Total Mileage","Location Analysis","Gas Prices"])
+    tab21, tab22, tab23, tab24 = st.tabs(["Total Mileage","Location Analysis","Gas Prices","Miles per Gallon"])
     with tab21:
         st.subheader("Total Mileage Traveled and Cost Incurred")
         st.write("""
@@ -255,6 +259,40 @@ with dataviz:
                  If you're interested in knowing how to plot this, the code is shown below.
                  """)
         st.code(code_gplt2,language="python")
+
+    with tab24:
+        st.subheader("Miles per Gallon")
+        st.write("""
+                 It is known that driving conditions can impact a car's fuel economy as measured in miles per gallon (mpg). So let's look at mpg over the dataset ordered by days since purchase.
+                 """)
+        fig, ax1 = plt.subplots()
+        # Add scatterplot
+        ax1.scatter(df_stops['dtindex'], df_stops['mpg'], s=60, alpha=0.7,color="b", edgecolors="k")
+        ax1.set_ylim([0,50])
+        # Fit with polyfit
+        b, m = polyfit(df_stops['dtindex'], df_stops['mpg'], 1)
+        # Add scatterplot
+        plt.axline(xy1=(0, b), slope=m, color='r', label=f'$y = {m:.2f}x {b:+.2f}$')
+        plt.legend()
+        st.pyplot(fig)
+        st.write("""
+                 It varies, but it seems to be fairly consistent, since the regression slope is nearly zero.
+
+                 Let's look at the overall distribution of mpg to see how it's distributed.
+                 """)
+
+        fig, ax1 = plt.subplots()
+        plt.hist(df_stops['mpg'], bins=15, density=True, alpha=0.7, color='b')
+        mean = statistics.mean(df_stops['mpg'])
+        sd = statistics.stdev(df_stops['mpg'])
+        x=range(int(mean-3*sd-1),int(mean+3*sd+1))
+        plt.plot(x, norm.pdf(x, mean, sd), label=f'Mean = {mean:.2f}\nStDev = {sd:.2f}',color='r')
+        ax1.set_xlim([0,50])
+        plt.legend()
+        st.pyplot(fig)
+        st.write("""
+                 Across the entire timeframe, the distribution appears close to normal. If we want to make a simplifying assumption, assuming mpg is nearly constant may be a good one.
+                 """)
 
     # with tab23:
     #     st.subheader("Total Mileage Traveled")
