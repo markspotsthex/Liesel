@@ -225,7 +225,6 @@ with dataviz:
         line1 = ax1.scatter(df_stops['datetime'], df_stops['price'],label='Price Paid')
         
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
-        ax1.legend()
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
