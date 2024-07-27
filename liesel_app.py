@@ -30,7 +30,6 @@ liesel_buy = datetime(2019,6,21)
 pandemic_st = datetime(2020,3,11)
 pandemic_end= datetime(2022,4,13)
 rto = datetime(2023,4,17)
-m_0 = 59
 # -------------------
 
 # ---- external data ----
@@ -85,24 +84,34 @@ df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
 df_stops['datetime']=pd.to_datetime(df_stops['datetime'])
 df_stops['mdate']=pd.to_datetime(df_stops['datetime'].dt.date)-pd.tseries.offsets.Week(weekday=0)
 df_stops['dtindex']=(df_stops['datetime']-liesel_buy).dt.days
+# computed variables
 df_stops['mpg']=df_stops['trip']/df_stops['gal']
+# cumulative variables
 df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
-
+# difference variables
+df_stops['miles_diff']=df_stops['miles'].diff()
+df_stops['miles_diff']=df_stops['miles_diff'].fillna(df_stops['miles'])
+df_stops['dtbetween']=df_stops['dtindex'].diff()
+df_stops['dtbetween']=df_stops['dtbetween'].fillna(df_stops['dtindex'])
 code_PD="""
 fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
 with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 df_stops = pd.DataFrame(fh['stops']).sort_values(by=['datetime'])
-# adding some date variables
 df_stops['datetime']=pd.to_datetime(df_stops['datetime'])
 df_stops['mdate']=pd.to_datetime(df_stops['datetime'].dt.date)-pd.tseries.offsets.Week(weekday=0)
 df_stops['dtindex']=(df_stops['datetime']-liesel_buy).dt.days
-# adding data variables
+# computed variables
 df_stops['mpg']=df_stops['trip']/df_stops['gal']
+# cumulative variables
 df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
-"""
+# difference variables
+df_stops['miles_diff']=df_stops['miles'].diff()
+df_stops['miles_diff']=df_stops['miles_diff'].fillna(df_stops['miles'])
+df_stops['dtbetween']=df_stops['dtindex'].diff()
+df_stops['dtbetween']=df_stops['dtbetween'].fillna(df_stops['dtindex'])"""
 # -----------------------
 
 st.set_page_config(page_title=page_title,layout=layout)
