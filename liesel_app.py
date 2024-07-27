@@ -90,8 +90,9 @@ df_stops['fcost']=df_stops['credit'].cumsum()
 df_stops['ttrip']=df_stops['trip'].cumsum()
 # difference variables
 df_stops['miles_diff']=df_stops['miles'].diff()
-df_stops['miles_diff']=df_stops['miles_diff'].fillna(df_stops['miles'])
 df_stops['dtbetween']=df_stops['dtindex'].diff()
+# populate first row in difference variables
+df_stops['miles_diff']=df_stops['miles_diff'].fillna(df_stops['miles'])
 df_stops['dtbetween']=df_stops['dtbetween'].fillna(df_stops['dtindex'])
 # computed variables
 df_stops['mpg']=df_stops['miles_diff']/df_stops['gal']
@@ -170,22 +171,24 @@ with dataviz:
                  """)
         st.code(code_PD,language="python")
         fig, ax1 = plt.subplots()
-        ax1.scatter(df_stops['datetime'], df_stops['miles'])
+        ax1.scatter(df_stops['datetime'], df_stops['miles'],label='Total Miles')
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
         ax2 = ax1.twinx()
-        ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red')
+        ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red',label='Cumulative Cost')
+        plt.legend()
         code_mplt1="""
         fig, ax1 = plt.subplots()
-        ax1.scatter(df_stops['datetime'], df_stops['miles'])
+        ax1.scatter(df_stops['datetime'], df_stops['miles'],label='Total Miles')
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
         ax2 = ax1.twinx()
-        ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red')
+        ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red',label='Cumulative Cost')
+        plt.legend()
         plt.show()
         """
         st.pyplot(fig)
@@ -218,14 +221,14 @@ with dataviz:
                  Now that I have gas prices for my transactions and for the nation, I can create a plot to compare them.
                  """)
         fig, ax1 = plt.subplots()
-        ax1.scatter(df_stops['datetime'], df_stops['price'])
+        ax1.scatter(df_stops['datetime'], df_stops['price'],label='Price Paid')
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
         ax2 = ax1.twinx()
-        ax2.scatter(data.index, data['gas'],color='tab:red')
-
+        ax2.scatter(data.index, data['gas'],color='tab:red',label='National Price Average')
+        plt.legend()
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
         code_gplt1="""
@@ -239,7 +242,7 @@ with dataviz:
         # second plot: national average gas price from FRED database
         ax2 = ax1.twinx()
         ax2.scatter(data.index, data['gas'],color='tab:red')
-
+        plt.legend()
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
         plt.show()
