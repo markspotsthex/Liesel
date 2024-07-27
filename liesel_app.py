@@ -30,6 +30,7 @@ liesel_buy = datetime(2019,6,21)
 pandemic_st = datetime(2020,3,11)
 pandemic_end= datetime(2022,4,13)
 rto = datetime(2023,4,17)
+m_0 = 59
 # -------------------
 
 # ---- external data ----
@@ -141,6 +142,8 @@ with story:
 
 
 # ---- Data Analytics Visualization section ----
+st.markdown("""---""")
+
 dataviz = st.container()
 with dataviz:
     # TODO: add visualizations
