@@ -76,7 +76,7 @@
 ,{"stationName":"Riverwoods Mobil","datetime":"2023-03-29 07:51","gal":5.574,"price":3.899,"credit":21.73,"miles":6692,"trip":154.3}
 ,{"stationName":"Riverwoods Mobil","datetime":"2023-11-16 17:17","gal":6.991,"price":3.699,"credit":25.86,"miles":8921,"trip":179.9}
 ,{"stationName":"Riverwoods Mobil","datetime":"2023-11-02 17:28","gal":7.528,"price":3.799,"credit":28.60,"miles":8741,"trip":201.1}
-,{"stationName":"Riverwoods Mobil","datetime":"2023-05-01 08:03","gal":5.106,"price":4.199,"credit":21.44,"miles":7401,"trip":141.3}
+,{"stationName":"Riverwoods Mobil","datetime":"2023-06-01 08:03","gal":5.106,"price":4.199,"credit":21.44,"miles":7401,"trip":141.3,"errors":{"date":"misread"}}
 ,{"stationName":"Riverwoods Mobil","datetime":"2023-04-25 08:00","gal":8.518,"price":4.299,"credit":35.62,"miles":6920,"trip":228.6}
 ]
 }
