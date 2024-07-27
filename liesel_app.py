@@ -173,12 +173,13 @@ with dataviz:
         fig, ax1 = plt.subplots()
         ax1.scatter(df_stops['datetime'], df_stops['miles'],label='Total Miles')
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
+        ax1.legend()
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
         ax2 = ax1.twinx()
         ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red',label='Cumulative Cost')
-        plt.legend()
+        ax2.legend()
         code_mplt1="""
         fig, ax1 = plt.subplots()
         ax1.scatter(df_stops['datetime'], df_stops['miles'],label='Total Miles')
@@ -223,12 +224,13 @@ with dataviz:
         fig, ax1 = plt.subplots()
         ax1.scatter(df_stops['datetime'], df_stops['price'],label='Price Paid')
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
+        ax1.legend()
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
         ax2 = ax1.twinx()
         ax2.scatter(data.index, data['gas'],color='tab:red',label='National Price Average')
-        plt.legend()
+        ax2.legend()
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
         code_gplt1="""
@@ -259,7 +261,7 @@ with dataviz:
         # Add scatterplot
         ax1.scatter(df_gpr['gas'], df_gpr['price'], s=60, alpha=0.7, edgecolors="k")
         plt.axline(xy1=(0, b), slope=m, color='r', label=f'$y = {m:.2f}x {b:+.2f}$')
-        plt.legend()
+        ax1.legend()
         ax1.set_xlim([1.5,None])
         code_gplt2="""
         df_gpr = df_stops[['mdate','price']].merge(right=data[['mdate','gas']],how='inner',on=['mdate'],suffixes=(False,False))        
@@ -269,7 +271,7 @@ with dataviz:
         # Add scatterplot
         ax1.scatter(df_gpr['gas'], df_gpr['price'], s=60, alpha=0.7, edgecolors="k")
         plt.axline(xy1=(0, b), slope=m, color='r', label=f'$y = {m:.2f}x {b:+.2f}$')
-        plt.legend()
+        ax1.legend()
         ax1.set_xlim([1.5,None])
         plt.show()
         """
@@ -294,7 +296,7 @@ with dataviz:
         b, m = polyfit(df_stops['dtindex'], df_stops['mpg'], 1)
         # Add scatterplot
         plt.axline(xy1=(0, b), slope=m, color='r', label=f'$y = {m:.2f}x {b:+.2f}$')
-        plt.legend()
+        ax1.legend()
         st.pyplot(fig)
         st.write("""
                  It varies, but it seems to be fairly consistent, since the regression slope is nearly zero.
@@ -309,7 +311,7 @@ with dataviz:
         x=range(int(mean-3*sd-1),int(mean+3*sd+1))
         plt.plot(x, norm.pdf(x, mean, sd), label=f'Mean = {mean:.2f}\nStDev = {sd:.2f}',color='r')
         ax1.set_xlim([0,50])
-        plt.legend()
+        ax1.legend()
         st.pyplot(fig)
         st.write("""
                  Across the entire timeframe, the distribution appears close to normal. If we want to make a simplifying assumption, assuming mpg is nearly constant may be a good one.
