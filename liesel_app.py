@@ -171,15 +171,16 @@ with dataviz:
                  """)
         st.code(code_PD,language="python")
         fig, ax1 = plt.subplots()
-        ax1.scatter(df_stops['datetime'], df_stops['miles'],label='Total Miles')
+        line1, = ax1.scatter(df_stops['datetime'], df_stops['miles'],label='Total Miles')
+        ax1.legend(handles=[line1],loc='upper left')
+
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
-        ax1.legend()
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
         ax2 = ax1.twinx()
-        ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red',label='Cumulative Cost')
-        ax2.legend()
+        line2, = ax2.scatter(df_stops['datetime'], df_stops['fcost'],color='tab:red',label='Cumulative Cost')
+        ax2.legend(handles=[line2],loc='lower right')
         code_mplt1="""
         fig, ax1 = plt.subplots()
         ax1.scatter(df_stops['datetime'], df_stops['miles'],label='Total Miles')
@@ -222,15 +223,17 @@ with dataviz:
                  Now that I have gas prices for my transactions and for the nation, I can create a plot to compare them.
                  """)
         fig, ax1 = plt.subplots()
-        ax1.scatter(df_stops['datetime'], df_stops['price'],label='Price Paid')
+        line1, = ax1.scatter(df_stops['datetime'], df_stops['price'],label='Price Paid')
+        ax1.legend(handles=[line1],loc='upper left')
+        
         ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%b'))
         ax1.legend()
         for label in ax1.get_xticklabels(which='major'):
             label.set(rotation=30,horizontalalignment='right')
 
         ax2 = ax1.twinx()
-        ax2.scatter(data.index, data['gas'],color='tab:red',label='National Price Average')
-        ax2.legend()
+        line2, = ax2.scatter(data.index, data['gas'],color='tab:red',label='National Price Average')
+        ax2.legend(handles=[line2],loc='lower right')
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
         code_gplt1="""
