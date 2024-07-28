@@ -202,7 +202,7 @@ with dataviz:
 
         nodes_dict = {
             'C':{'loc':(0,y),'label':'Cost'}
-            ,'G':{'loc':(.5,0),'label':'Fuel\nVolume'}
+            ,'G':{'loc':(.5,0),'label':'Fuel\\nVolume'}
             ,'M':{'loc':(-.5,0),'label':'Miles'}
         }
         nodes = nodes_dict.keys()
