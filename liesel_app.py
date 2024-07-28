@@ -7,6 +7,8 @@ import urllib.request
 import json
 from datetime import datetime, date, timedelta
 
+import networkx as nx
+import math
 import pandas as pd
 import numpy as np
 from numpy.polynomial.polynomial import polyfit
@@ -163,7 +165,73 @@ st.markdown("""---""")
 dataviz = st.container()
 with dataviz:
     # TODO: add visualizations
-    tab21, tab22, tab23, tab24 = st.tabs(["Total Mileage","Location Analysis","Gas Prices","Miles per Gallon"])
+    tab20, tab21, tab22, tab23, tab24 = st.tabs(["Relationships","Total Mileage","Location Analysis","Gas Prices","Miles per Gallon"])
+    with tab20:
+        st.write("""
+        The data recorded addresses three interrelated factors: Cost, Miles, and Fuel Volume. The graph below shows the interrelationships.
+        """)
+        y=math.sqrt(3)/2
+
+        nodes_dict = {
+            'C':{'loc':(0,y),'label':'Cost'}
+            ,'G':{'loc':(.5,0),'label':'Fuel\nVolume'}
+            ,'M':{'loc':(-.5,0),'label':'Miles'}
+        }
+        nodes = nodes_dict.keys()
+        nodes_labels={k:v['label'] for k,v in nodes_dict.items()}
+        pos = {k:v['loc'] for k,v in nodes_dict.items()}
+
+        edges_dict = {
+            'CM':{'nodes':('C','M'),'title':'Economy','units':'$/mi'}
+            ,'MG':{'nodes':('M','G'),'title':'Efficiency','units':'mpg'}
+            ,'CG':{'nodes':('C','G'),'title':'Price','units':'$/gal'}
+        }
+        edges_labels={v['nodes']:v['title']+' ('+v['units']+')' for k,v in edges_dict.items()}
+
+        G = nx.DiGraph()
+        G.add_nodes_from(nodes)
+        for k,v in edges_dict.items():
+            G.add_edge(v['nodes'][0],v['nodes'][1])
+
+        fig, ax = plt.subplots()
+        size=1000
+        nx.draw(G, pos=pos, node_size=size, labels=nodes_labels,with_labels=True)
+        nx.draw_networkx_edge_labels(G,pos=pos,edge_labels=edges_labels,font_color='black')
+        code_nx="""
+        y=math.sqrt(3)/2
+
+        nodes_dict = {
+            'C':{'loc':(0,y),'label':'Cost'}
+            ,'G':{'loc':(.5,0),'label':'Fuel\nVolume'}
+            ,'M':{'loc':(-.5,0),'label':'Miles'}
+        }
+        nodes = nodes_dict.keys()
+        nodes_labels={k:v['label'] for k,v in nodes_dict.items()}
+        pos = {k:v['loc'] for k,v in nodes_dict.items()}
+
+        edges_dict = {
+            'CM':{'nodes':('C','M'),'title':'Economy','units':'$/mi'}
+            ,'MG':{'nodes':('M','G'),'title':'Efficiency','units':'mpg'}
+            ,'CG':{'nodes':('C','G'),'title':'Price','units':'$/gal'}
+        }
+        edges_labels={v['nodes']:v['title']+' ('+v['units']+')' for k,v in edges_dict.items()}
+
+        G = nx.DiGraph()
+        G.add_nodes_from(nodes)
+        for k,v in edges_dict.items():
+            G.add_edge(v['nodes'][0],v['nodes'][1])
+
+        fig, ax = plt.subplots()
+        size=1000
+        nx.draw(G, pos=pos, node_size=size, labels=nodes_labels,with_labels=True)
+        nx.draw_networkx_edge_labels(G,pos=pos,edge_labels=edges_labels,font_color='black')
+        """
+        st.pyplot(fig)
+        st.write("""
+        This graph was produced using the networkx and matplotlib packages. The code is shown below.
+        """)
+        st.code(code_nx)
+
     with tab21:
         st.subheader("Total Mileage Traveled and Cost Incurred")
         st.write("""
