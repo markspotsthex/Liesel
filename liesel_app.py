@@ -168,7 +168,7 @@ with dataviz:
     tab20, tab21, tab22, tab23, tab24 = st.tabs(["Relationships","Total Mileage","Location Analysis","Gas Prices","Miles per Gallon"])
     with tab20:
         st.write("""
-        The data recorded addresses three interrelated factors: Cost, Miles, and Fuel Volume. The graph below shows the interrelationships.
+        The data recorded addresses three interrelated data dimensions: Cost, Miles, and Fuel Volume. The graph below shows the factors and their relationships.
         """)
         y=math.sqrt(3)/2
 
@@ -228,7 +228,9 @@ with dataviz:
         """
         st.pyplot(fig)
         st.write("""
-        This graph was produced using the networkx and matplotlib packages. The code is shown below.
+        In the data, we capture all three dimensions (cost, fuel volume, mileage) and one of the relationships (price). We can calculate the other two relationships: Miles per gallon (mpg) and cost per mile. While we analyze and visualize the data, we have to keep in mind that these are not independent elements.
+                 
+        The graph was produced using the networkx and matplotlib packages. The code is shown below.
         """)
         st.code(code_nx)
 
