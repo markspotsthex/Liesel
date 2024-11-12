@@ -299,7 +299,7 @@ with dataviz:
             label.set(rotation=30,horizontalalignment='right')
 
         ax2 = ax1.twinx()
-        line2 = ax2.scatter(data.index, data['gas'],color='tab:red',label='National Price Average')
+        line2 = ax2.scatter(data.index, data['gas'],color='tab:red',alpha=0.2,label='National Price Average')
         plt.legend(handles=[line1, line2],loc='lower right')
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
@@ -313,7 +313,7 @@ with dataviz:
 
         # second plot: national average gas price from FRED database
         ax2 = ax1.twinx()
-        ax2.scatter(data.index, data['gas'],color='tab:red')
+        ax2.scatter(data.index, data['gas'],color='tab:red',alpha=0.2,label='National Price Average')
         plt.legend()
         ax1.set_ylim([0, None])
         ax2.set_ylim([0, None])
