@@ -12,6 +12,9 @@
 ,{"stationName":"BP 9109927","attributes":{"price_dim":"$/gal","brand":"BP","location":{"address":"Unknown"},"uid":"9109927"}}
 ,{"stationName":"Palatine Mobil","attributes":{"price_dim":"$/gal","brand":"Mobil","location":{"address":"7 N Northwest Highway, Palatine, IL 60067","county":"Cook (IL)","latitude":42.110811,"longitude": -88.033471},"uid":"7-Eleven #38977"}}
 ,{"stationName":"4401 N Cicero Shell","attributes":{"price_dim":"$/gal","brand":"Shell","location":{"address":"4401 N Cicero Ave, Chicago, IL 60630","county":"Cook (IL)","latitude":41.961115,"longitude": -87.747149},"uid":"57444166201"}}
+,{"stationName":"Shell TRUENORTH","attributes":{"price_dim":"$/gal","brand":"Shell","location":{"address":"185 Milwaukee Ave, Buffalo Grove, IL 60089","county":"Lake (IL)","latitude":42.15583885320408,"longitude":-87.915811827927},"uid":"12683458009"}}
+,{"stationName":"Towanda BP","attributes":{"price_dim":"$/gal","brand":"BP","uid":"Unknown","location":{"address":"204 N Jefferson, Towanda, IL 61776","county":"McLean (IL)","latitude":40.56729122377586,"longitude":-88.89983697473748}}}
+,{"stationName":"Archway BP","attributes":{"price_dim":"$/gal","uid":"1037700","brand":"BP","location":{"address":"1647 N LaSalle Dr, Chicago, IL 60614","county":"Cook (IL)","latitude":41.91250803613609,"longitude":-87.63271430351037}}}
 ],
 "stops":[
  {"datetime":"2019-07-17 07:46","stationName":"Deerfield Shell","gal":7.040,"price":3.279,"credit":23.08,"trip":210.9,"miles":215}
@@ -78,5 +81,25 @@
 ,{"stationName":"Riverwoods Mobil","datetime":"2023-11-02 17:28","gal":7.528,"price":3.799,"credit":28.60,"miles":8741,"trip":201.1}
 ,{"stationName":"Riverwoods Mobil","datetime":"2023-06-01 08:03","gal":5.106,"price":4.199,"credit":21.44,"miles":7401,"trip":141.3,"errors":{"date":"misread"}}
 ,{"stationName":"Riverwoods Mobil","datetime":"2023-04-25 08:00","gal":8.518,"price":4.299,"credit":35.62,"miles":6920,"trip":228.6}
+,{"stationName":"Archway BP","datetime":"2024-09-13 16:41","gal":11.5846,"credit":47.28,"price":4.099,"miles":11167,"trip":285.4}
+,{"stationName":"Towanda BP","datetime":"2024-12-14 17:44","miles":11897,"trip":197.9,"credit":23.12,"gal":7.226,"price":3.199}
+,{"stationName":"Shell TRUENORTH","datetime":"2024-06-05 19:18","miles":10377,"gal":5.605,"price":3.959,"credit":22.19,"trip":150.3}
+,{"stationName":"3700 W Addison Shell","miles":12930,"trip":181.2,"credit":26.13,"gal":7.064,"price":3.699,"datetime":"2025-04-13 13:35"}
+,{"stationName":"Deerfield Shell","datetime":"2024-06-27 07:25","miles":10548,"trip":170.6,"credit":22.22,"gal":5.422,"price":4.099}
+,{"stationName":"Deerfield Shell","datetime":"2024-07-08 07:43","miles":10676,"trip":128.1,"credit":17.88,"gal":4.363,"price":4.099}
+,{"stationName":"Deerfield Shell","datetime":"2024-10-30 08:10","miles":11503,"trip":163.7,"credit":19.50,"gal":5.806,"price":3.359,"errors":{"trip":"reset"}}
+,{"stationName":"Riverwoods Mobil","datetime":"2024-08-07 07:51","miles":10881,"trip":204.9,"gal":7.715,"price":4.399,"credit":33.94}
+,{"stationName":"Riverwoods Mobil","datetime":"2024-10-07 07:59","miles":11340,"trip":173.1,"credit":24.84,"gal":6.716,"price":3.699}
+,{"stationName":"Riverwoods Mobil","datetime":"2024-12-05 16:07","miles":11699,"trip":160.6,"credit":27.24,"gal":8.015,"price":3.399}
+,{"stationName":"Riverwoods Mobil","datetime":"2024-12-17 17:42","miles":12064,"trip":167.2,"credit":19.47,"gal":5.729,"price":3.399}
+,{"stationName":"Riverwoods Mobil","datetime":"2025-01-29 07:56","miles":12213,"trip":148.8,"credit":17.75,"gal":5.072,"price":3.499}
+,{"stationName":"Riverwoods Mobil","datetime":"2025-02-20 07:54","miles":12378,"trip":165.1,"credit":22.04,"price":3.399,"gal":6.483}
+,{"stationName":"Riverwoods Mobil","datetime":"2025-03-06 15:43","miles":12574,"trip":195.7,"credit":23.68,"gal":7.051,"price":3.359}
+,{"stationName":"Riverwoods Mobil","datetime":"2025-03-25 16:33","miles":12748,"trip":174.5,"credit":20.21,"gal":5.613,"price":3.599}
+,{"stationName":"Riverwoods Mobil","datetime":"2025-05-22 07:53","miles":13106,"trip":175.9,"credit":25.18,"gal":6.806,"price":3.699}
+,{"stationName":"Riverwoods Mobil","datetime":"2025-06-12 17:19","miles":13281,"trip":175.7,"credit":24.12,"gal":6.521,"price":3.699,"errors":{"trip":"reset"}}
+,{"stationName":"Riverwoods Mobil","datetime":"2025-06-25 08:03","miles":13478,"trip":193.2,"credit":25.91,"gal":7.005,"price":3.699}
+,{"stationName":"Riverwoods Mobil","datetime":"2025-07-23 17:33","miles":13721,"trip":243.7,"credit":30.48,"gal":8.240,"price":3.699}
+,{"stationName":"Riverwoods Mobil","datetime":"2024-03-29 08:01","miles":10227,"trip":169.3,"credit":28.76,"price":4.499,"gal":6.392}
 ]
 }
