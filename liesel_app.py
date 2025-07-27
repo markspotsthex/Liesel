@@ -375,7 +375,7 @@ with dataviz:
                  """)
 
         fig, ax1 = plt.subplots()
-        plt.hist(df_stops['mpg'], bins=15, density=True, alpha=0.7, color='b')
+        plt.hist(df_stops['mpg'], bins=20, density=True, alpha=0.7, color='b')
         mean = statistics.mean(df_stops['mpg'])
         sd = statistics.stdev(df_stops['mpg'])
         x=range(int(mean-3*sd-1),int(mean+3*sd+1))
