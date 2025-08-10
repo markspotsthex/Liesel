@@ -378,7 +378,7 @@ with dataviz:
         plt.hist(df_stops['mpg'], bins='auto', density=True, alpha=0.7, color='b')
         mean = statistics.mean(df_stops['mpg'])
         sd = statistics.stdev(df_stops['mpg'])
-        x=range(int(mean-3*sd-1),int(mean+3*sd+1))
+        x=range(0,50,0.5)
         plt.plot(x, norm.pdf(x, mean, sd), label=f'Mean = {mean:.2f}\nStDev = {sd:.2f}',color='r')
         ax1.set_xlim([0,50])
         ax1.legend()
