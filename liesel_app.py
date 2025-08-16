@@ -277,7 +277,8 @@ with dataviz:
         st.write("""
                  As you can see in the map below, I haven't driven my car on any long distance trips. It's a comfortable ride, but the trunk is small, and my family doesn't pack light. The furthest my car has driven is to Normal, IL (not shown on map).
                  """)
-        folium_static(map_osm, width=700)
+#        folium_static(map_osm, width=700)
+        st_folium(map_osm, width=700)
         st.write("""
                  Folium is a pretty powerful mapping tool for Python, but it doesn't require a lot of code to create a map.
                  """)
@@ -379,6 +380,8 @@ with dataviz:
         mean = statistics.mean(df_stops['mpg'])
         sd = statistics.stdev(df_stops['mpg'])
         xmin, xmax = plt.xlim()
+        xmin = min(xmin,mean-2.5*sd)
+        xmax = max(xmax,mean+2.5*sd)
         x = np.linspace(xmin, xmax, 100)
         plt.plot(x, norm.pdf(x, mean, sd), label=f'Mean = {mean:.2f}\nStDev = {sd:.2f}',color='r')
         ax1.set_xlim([0,50])
