@@ -80,12 +80,14 @@ loc_df['col']=loc_df['County'].map(loc_col)
 map_osm = folium.Map(location=st.secrets['s_LOCATION'],zoom_start=8)
 loc_df.loc[loc_df['County']=='Cook (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
 loc_df.loc[loc_df['County']=='Lake (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
+loc_df.loc[(loc_df['County']=='Kane (IL)')|(loc_df['County']=='Kendall (IL)')].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
 loc_df.loc[(loc_df['County']=='Will (IL)')|(loc_df['County']=='McLean (IL)')].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
 code_Map="""
 map_osm = folium.Map(location=[42,-87],zoom_start=8)
 # markers colored to reflect the IL county in which the station resides
 loc_df.loc[loc_df['County']=='Cook (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
 loc_df.loc[loc_df['County']=='Lake (IL)'].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
+loc_df.loc[(loc_df['County']=='Kane (IL)')|(loc_df['County']=='Kendall (IL)')].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
 loc_df.loc[(loc_df['County']=='Will (IL)')|(loc_df['County']=='McLean (IL)')].apply(lambda row:folium.CircleMarker(location=[row["Latitude"], row["Longitude"]],radius=4,color=row["col"],).add_to(map_osm),axis=1)
 """
 
