@@ -59,7 +59,14 @@ with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 
 loc_df=pd.DataFrame([[station['stationName'],station['attributes']['location']['latitude'],station['attributes']['location']['longitude'],station['attributes']['location']['county']] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"],columns=['Name','Latitude','Longitude','County'])
-loc_col={'Cook (IL)':"blue",'Lake (IL)':"green",'Will (IL)':"red",'McLean (IL)':"red"}
+loc_col={
+    'Cook (IL)':"blue",
+    'Lake (IL)':"green",
+    'Kane (IL)':"purple",
+    'Kendall (IL)':"purple",
+    'Will (IL)':"red",
+    'McLean (IL)':"red"
+}
 loc_df['col']=loc_df['County'].map(loc_col)
 code_LL = """
 fpath = "https://raw.githubusercontent.com/markspotsthex/Liesel/main/Liesel_Fuel_History.json"
@@ -67,7 +74,7 @@ with urllib.request.urlopen(fpath) as url:
     fh = json.load(url)
 # use list comprehensions to parse the JSON into data series
 loc_df=pd.DataFrame([[station['stationName'],station['attributes']['location']['latitude'],station['attributes']['location']['longitude'],station['attributes']['location']['county']] for station in fh['stations'] if station['attributes']['location']['address']!="Unknown"],columns=['Name','Latitude','Longitude','County'])
-loc_col={'Cook (IL)':"blue",'Lake (IL)':"green",'Will (IL)':"red",'McLean (IL)':"red"}
+loc_col={'Cook (IL)':"blue",'Lake (IL)':"green",'Kane (IL)':"purple",'Kendall (IL)':"purple",'Will (IL)':"red",'McLean (IL)':"red"}
 loc_df['col']=loc_df['County'].map(loc_col)
 """
 map_osm = folium.Map(location=st.secrets['s_LOCATION'],zoom_start=8)
