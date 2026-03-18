@@ -94,3 +94,12 @@ select
 , value:miles::INT as miles
 , value:trip::FLOAT as trip
 from lorelai.stops_raw, LATERAL FLATTEN(input => stops_raw);
+
+create or replace view lorelai.stops_with_diffs as
+select *
+, s.miles - LAG(s.miles) OVER (ORDER BY s.stopdt asc) AS miles_diff
+, sum(s.trip) OVER (ORDER BY s.stopdt asc) AS cumulative_trip_miles
+, datediff('day', LAG(s.stopdt) OVER (ORDER BY s.stopdt asc), s.stopdt) as days_between
+from lorelai.stops_cleaned as s
+order by s.stopdt
+;
